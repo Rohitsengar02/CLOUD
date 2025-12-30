@@ -74,6 +74,7 @@ class WebNavBar extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         _NavLink(label: 'Home', onTap: () => context.go('/')),
+                        _NavLink(label: 'About', onTap: () => context.go('/about')),
                         _NavLink(label: 'Services', onTap: () => context.go('/services')),
                         _NavLink(label: 'Blog', onTap: () => context.go('/blog')),
                         _NavLink(label: 'Contact', onTap: () => context.go('/contact')),

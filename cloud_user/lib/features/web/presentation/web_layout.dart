@@ -61,6 +61,7 @@ class WebLayout extends StatelessWidget {
               ),
             ),
             _drawerTile(context, 'Home', '/', Icons.home_outlined),
+            _drawerTile(context, 'About', '/about', Icons.info_outline),
             _drawerTile(context, 'Services', '/services', Icons.local_laundry_service_outlined),
             _drawerTile(context, 'Blog', '/blog', Icons.article_outlined),
             _drawerTile(context, 'Contact', '/contact', Icons.contact_support_outlined),
