@@ -52,13 +52,13 @@ class WebNavBar extends ConsumerWidget {
                         splashColor: Colors.transparent,
                         child: Image.asset(
                           'assets/images/logo.png',
-                          height: isMobile ? 50 : 80,
+                          height: isMobile ? 80 : 130,
                           fit: BoxFit.contain,
                           errorBuilder: (_, __, ___) => Text(
                             'CLINOWASH',
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
-                              fontSize: isMobile ? 20 : 26,
+                              fontSize: isMobile ? 28 : 36,
                               color: AppTheme.primary,
                               letterSpacing: 1.5,
                             ),

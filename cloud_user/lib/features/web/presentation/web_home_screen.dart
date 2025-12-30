@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
+import 'package:visibility_detector/visibility_detector.dart';
 
 
 class WebHomeScreen extends ConsumerStatefulWidget {
@@ -89,8 +90,8 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(
-        top: isMobile ? 40 : 0, 
-        bottom: isMobile ? 60 : 0, 
+        top: isMobile ? 20 : 0, 
+        bottom: isMobile ? 30 : 0, 
         left: isMobile ? 20 : 40, 
         right: isMobile ? 20 : 40
       ),
@@ -292,8 +293,8 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.only(
-        top: 20, 
-        bottom: isMobile ? 40 : 60, 
+        top: 10, 
+        bottom: isMobile ? 20 : 30, 
         left: isMobile ? 20 : 40, 
         right: isMobile ? 20 : 40
       ),
@@ -311,7 +312,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                   color: const Color(0xFF1E293B)
                 )
               ),
-              SizedBox(height: isMobile ? 30 : 50),
+              SizedBox(height: isMobile ? 20 : 30),
               
               if (isMobile)
                 GridView.builder(
@@ -372,7 +373,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 40 : 80, 
+        vertical: isMobile ? 20 : 40, 
         horizontal: isMobile ? 20 : 40
       ),
       color: Colors.white,
@@ -560,7 +561,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 100, 
+        vertical: isMobile ? 30 : 50, 
         horizontal: isMobile ? 20 : 40
       ),
       color: Colors.white,
@@ -583,12 +584,14 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text(
-                    'Latest from Cloud Wash',
-                    style: GoogleFonts.playfairDisplay(
-                      fontSize: isMobile ? 32 : 48,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF1E293B),
+                  Expanded(
+                    child: Text(
+                      'Latest from Cloud Wash',
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: isMobile ? 32 : 48,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFF1E293B),
+                      ),
                     ),
                   ),
                   if (!isMobile)
@@ -672,7 +675,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 100, 
+        vertical: isMobile ? 30 : 50, 
         horizontal: isMobile ? 20 : 40
       ),
       color: const Color(0xFFF8FAFC),
@@ -725,7 +728,6 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
   Widget _contactDetailItem(IconData icon, String title, String value) {
     return Row(
-      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           padding: const EdgeInsets.all(12),
@@ -733,12 +735,18 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
           child: Icon(icon, color: const Color(0xFF6366F1), size: 24),
         ),
         const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
-            Text(value, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1E293B))),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
+              Text(
+                value, 
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1E293B)),
+                softWrap: true,
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -806,7 +814,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 40 : 60, 
+        vertical: isMobile ? 20 : 30, 
         horizontal: isMobile ? 20 : 40
       ),
       color: const Color(0xFFF8FAFC),
@@ -826,7 +834,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                   letterSpacing: -0.5,
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               if (isMobile)
                 SizedBox(
                   height: 220,
@@ -883,7 +891,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 40 : 60, 
+        vertical: isMobile ? 20 : 30, 
         horizontal: isMobile ? 20 : 40
       ),
       color: Colors.white,
@@ -1012,7 +1020,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 80, 
+        vertical: isMobile ? 30 : 40, 
         horizontal: isMobile ? 20 : 40
       ),
       color: const Color(0xFFF8FAFC),
@@ -1038,7 +1046,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                       _buildMostBookedViewAll(context),
                     ],
                   ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               // Services Grid
               if (isMobile)
                 SizedBox(
@@ -1134,7 +1142,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 80, 
+        vertical: isMobile ? 30 : 40, 
         horizontal: isMobile ? 20 : 40
       ),
       color: const Color(0xFFFDFCFB),
@@ -1172,7 +1180,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               if (isMobile)
                 GridView.count(
                   shrinkWrap: true,
@@ -1253,10 +1261,10 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 100, 
+        vertical: isMobile ? 30 : 50, 
         horizontal: isMobile ? 20 : 40
       ),
-      color: const Color(0xFF1E293B),
+      color: const Color(0xFFF8FAFC),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1300),
@@ -1269,7 +1277,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF818CF8),
+                      color: const Color(0xFF6366F1),
                       letterSpacing: 3,
                     ),
                   ),
@@ -1280,12 +1288,12 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
                     style: GoogleFonts.playfairDisplay(
                       fontSize: isMobile ? 32 : 48,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: const Color(0xFF1E293B),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               if (isMobile)
                 SizedBox(
                   height: 300,
@@ -1342,15 +1350,11 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 100, 
+        vertical: isMobile ? 30 : 50, 
         horizontal: isMobile ? 20 : 40
       ),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFF0F172A), Color(0xFF1E293B), Color(0xFF334155)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Colors.white,
       ),
       child: Column(
         children: [
@@ -1407,21 +1411,21 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
         Container(
           padding: EdgeInsets.all(isMobile ? 12 : 16),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
+            color: const Color(0xFF6366F1).withOpacity(0.08),
             shape: BoxShape.circle,
           ),
-          child: Icon(s['icon'] as IconData, color: const Color(0xFF818CF8), size: isMobile ? 24 : 32),
+          child: Icon(s['icon'] as IconData, color: const Color(0xFF6366F1), size: isMobile ? 24 : 32),
         ),
         SizedBox(height: isMobile ? 12 : 24),
-        Text(
-          s['value'] as String,
-          style: GoogleFonts.inter(fontSize: isMobile ? 28 : 52, fontWeight: FontWeight.w900, color: Colors.white),
+        _AnimatedCounter(
+          value: s['value'] as String,
+          style: GoogleFonts.inter(fontSize: isMobile ? 28 : 52, fontWeight: FontWeight.w900, color: const Color(0xFF1E293B)),
         ),
         const SizedBox(height: 8),
         Text(
           s['label'] as String,
           textAlign: TextAlign.center,
-          style: GoogleFonts.inter(fontSize: isMobile ? 14 : 16, color: Colors.white.withOpacity(0.6), fontWeight: FontWeight.w500),
+          style: GoogleFonts.inter(fontSize: isMobile ? 14 : 16, color: const Color(0xFF475569), fontWeight: FontWeight.w500),
         ),
       ],
     );
@@ -1437,7 +1441,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
           style: GoogleFonts.inter(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFF818CF8),
+            color: const Color(0xFF6366F1),
             letterSpacing: 3,
           ),
         ),
@@ -1448,7 +1452,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
           style: GoogleFonts.playfairDisplay(
             fontSize: isMobile ? 32 : 48,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: const Color(0xFF1E293B),
             height: 1.1,
           ),
         ),
@@ -1456,7 +1460,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
         Text(
           'Book, track, and manage your laundry needs with a single tap. Join 50,000+ happy users today.',
           textAlign: isMobile ? TextAlign.center : TextAlign.start,
-          style: TextStyle(fontSize: isMobile ? 16 : 18, color: Colors.white.withOpacity(0.7), height: 1.6),
+          style: TextStyle(fontSize: isMobile ? 16 : 18, color: const Color(0xFF475569), height: 1.6),
         ),
         const SizedBox(height: 48),
         Wrap(
@@ -1492,7 +1496,7 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
           width: isMobile ? 280 : 400,
           height: isMobile ? 280 : 400,
           decoration: BoxDecoration(
-            color: const Color(0xFF818CF8).withOpacity(0.1),
+            color: const Color(0xFF6366F1).withOpacity(0.05),
             shape: BoxShape.circle,
           ),
         ),
@@ -1501,10 +1505,10 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
           height: isMobile ? 450 : 600,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFF0F172A),
+            color: const Color(0xFF1E293B),
             borderRadius: BorderRadius.circular(isMobile ? 36 : 48),
             boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 40, offset: const Offset(0, 20)),
+              BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 40, offset: const Offset(0, 20)),
             ],
           ),
           child: ClipRRect(
@@ -3041,9 +3045,16 @@ class _PremiumTestimonialCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 30,
+            offset: const Offset(0, 15),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -3060,11 +3071,11 @@ class _PremiumTestimonialCard extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                    style: const TextStyle(color: Color(0xFF1E293B), fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
                     location,
-                    style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13),
+                    style: TextStyle(color: const Color(0xFF475569), fontSize: 13),
                   ),
                 ],
               ),
@@ -3081,8 +3092,8 @@ class _PremiumTestimonialCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             '"$text"',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+            style: const TextStyle(
+              color: Color(0xFF334155),
               fontSize: 15,
               fontStyle: FontStyle.italic,
               height: 1.6,
@@ -3100,6 +3111,89 @@ class _PremiumTestimonialCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _AnimatedCounter extends StatefulWidget {
+  final String value;
+  final TextStyle style;
+  const _AnimatedCounter({required this.value, required this.style});
+
+  @override
+  State<_AnimatedCounter> createState() => _AnimatedCounterState();
+}
+
+class _AnimatedCounterState extends State<_AnimatedCounter> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late double _targetValue;
+  late String _suffix;
+  late String _prefix;
+  bool _isDecimal = false;
+  bool _hasAnimated = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _parseValue();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+    _animation = Tween<double>(begin: 0, end: _targetValue).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn),
+    );
+  }
+
+  void _parseValue() {
+    _suffix = '';
+    _prefix = '';
+    String cleanValue = widget.value;
+    
+    // Extract suffix (K, +, etc)
+    final suffixRegExp = RegExp(r'[Kk\+]+$');
+    final suffixMatch = suffixRegExp.firstMatch(cleanValue);
+    if (suffixMatch != null) {
+      _suffix = suffixMatch.group(0)!;
+      cleanValue = cleanValue.substring(0, cleanValue.length - _suffix.length);
+    }
+
+    _isDecimal = cleanValue.contains('.');
+    _targetValue = double.tryParse(cleanValue) ?? 0;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return VisibilityDetector(
+      key: Key('counter_${widget.value}'),
+      onVisibilityChanged: (info) {
+        if (info.visibleFraction > 0.5 && !_hasAnimated) {
+          _controller.forward();
+          _hasAnimated = true;
+        }
+      },
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) {
+          String displayValue;
+          if (_isDecimal) {
+            displayValue = _animation.value.toStringAsFixed(1);
+          } else {
+            displayValue = _animation.value.toInt().toString();
+          }
+          return Text(
+            '$_prefix$displayValue$_suffix',
+            style: widget.style,
+          );
+        },
       ),
     );
   }

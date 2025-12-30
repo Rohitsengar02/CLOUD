@@ -55,8 +55,8 @@ class WebLayout extends StatelessWidget {
               child: Center(
                 child: Image.asset(
                   'assets/images/logo.png',
-                  height: 60,
-                  errorBuilder: (_, __, ___) => const Text('CLINOWASH', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  height: 100,
+                  errorBuilder: (_, __, ___) => const Text('CLINOWASH', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
                 ),
               ),
             ),

@@ -11,9 +11,9 @@ class WebFooter extends StatelessWidget {
     final bool isMobile = screenWidth < 1000;
 
     return Container(
-      color: const Color(0xFF0F172A), // Deep Slate
+      color: const Color(0xFFF1F5F9), // Light Slate
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 60 : 80, 
+        vertical: isMobile ? 30 : 50, 
         horizontal: isMobile ? 20 : 40
       ),
       child: Center(
@@ -58,15 +58,15 @@ class WebFooter extends StatelessWidget {
               Container(
                 height: 1,
                 width: double.infinity,
-                color: Colors.white.withOpacity(0.05),
+                color: Colors.black.withOpacity(0.05),
               ),
               const SizedBox(height: 48),
               if (isMobile)
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       '© 2025 Cloud Wash. Crafted with precision.',
-                      style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 14),
+                      style: TextStyle(color: Color(0xFF64748B), fontSize: 14),
                     ),
                     const SizedBox(height: 24),
                     Wrap(
@@ -86,9 +86,9 @@ class WebFooter extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       '© 2025 Cloud Wash. Crafted with precision.',
-                      style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 14),
+                      style: TextStyle(color: Color(0xFF64748B), fontSize: 14),
                     ),
                     Row(
                       children: [
@@ -118,19 +118,19 @@ class WebFooter extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: const Color(0xFF818CF8),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(Icons.waves_rounded, color: Colors.white, size: 28),
+              child: const Icon(Icons.waves_rounded, color: Colors.white, size: 48),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 24),
             Text(
               'Cloud Wash',
               style: GoogleFonts.inter(
-                color: Colors.white,
-                fontSize: 28,
+                color: const Color(0xFF1E293B),
+                fontSize: 48,
                 fontWeight: FontWeight.w900,
                 letterSpacing: -0.5,
               ),
@@ -141,8 +141,8 @@ class WebFooter extends StatelessWidget {
         Text(
           'Redefining premium garment care with technology and craftsmanship. Your wardrobe deserves nothing but the best.',
           textAlign: isMobile ? TextAlign.center : TextAlign.start,
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.5),
+          style: const TextStyle(
+            color: Color(0xFF475569),
             fontSize: 16,
             height: 1.8,
           ),
@@ -195,7 +195,7 @@ class WebFooter extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.inter(
-            color: Colors.white,
+            color: const Color(0xFF1E293B),
             fontSize: 14,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
@@ -217,7 +217,7 @@ class WebFooter extends StatelessWidget {
         Text(
           'CONTACT',
           style: GoogleFonts.inter(
-            color: Colors.white,
+            color: const Color(0xFF1E293B),
             fontSize: 14,
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
@@ -248,7 +248,7 @@ class WebFooter extends StatelessWidget {
           child: Text(
             text,
             textAlign: isMobile ? TextAlign.center : TextAlign.start,
-            style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 15, height: 1.5),
+            style: const TextStyle(color: Color(0xFF475569), fontSize: 15, height: 1.5),
           ),
         ),
       ],
@@ -275,7 +275,7 @@ class _FooterLinkState extends State<_FooterLink> {
       child: AnimatedDefaultTextStyle(
         duration: const Duration(milliseconds: 200),
         style: TextStyle(
-          color: _isHovered ? const Color(0xFF818CF8) : Colors.white.withOpacity(0.5),
+          color: _isHovered ? const Color(0xFF818CF8) : const Color(0xFF64748B),
           fontSize: 15,
           fontWeight: _isHovered ? FontWeight.bold : FontWeight.normal,
         ),
@@ -306,12 +306,12 @@ class _SocialButtonState extends State<_SocialButton> {
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: _isHovered ? widget.color : Colors.white.withOpacity(0.05),
+          color: _isHovered ? widget.color : Colors.black.withOpacity(0.05),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Icon(
           widget.icon,
-          color: Colors.white,
+          color: _isHovered ? Colors.white : const Color(0xFF64748B),
           size: 20,
         ),
       ),
@@ -330,7 +330,7 @@ class _MinimalLink extends StatelessWidget {
       onTap: () => context.go(route),
       child: Text(
         label,
-        style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 13),
+        style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
       ),
     );
   }
