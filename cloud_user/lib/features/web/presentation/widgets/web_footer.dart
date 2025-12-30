@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_user/core/theme/app_theme.dart';
 import 'package:go_router/go_router.dart';
 
 class WebFooter extends StatelessWidget {
@@ -117,24 +118,20 @@ class WebFooter extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFF818CF8),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Icon(Icons.waves_rounded, color: Colors.white, size: 64),
-            ),
-            const SizedBox(width: 32),
-            Text(
-              'Cloud Wash',
-              style: GoogleFonts.inter(
-                color: const Color(0xFF1E293B),
-                fontSize: 64,
-                fontWeight: FontWeight.w900,
-                letterSpacing: -0.5,
-              ),
-            ),
+             Image.asset(
+               'assets/images/logo.png',
+               height: isMobile ? 100 : 140,
+               fit: BoxFit.contain,
+               errorBuilder: (_, __, ___) => Text(
+                 'CLINOWASH',
+                 style: GoogleFonts.poppins(
+                   fontWeight: FontWeight.bold,
+                   fontSize: isMobile ? 32 : 44,
+                   color: AppTheme.primary,
+                   letterSpacing: 1.5,
+                 ),
+               ),
+             ),
           ],
         ),
         const SizedBox(height: 32),

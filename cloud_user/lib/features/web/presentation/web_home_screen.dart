@@ -65,7 +65,6 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
               _buildOffersSection(context),
               _buildMostBookedSection(context),
               _buildBlogPreviewSection(context),
-              _buildContactSection(context),
               _buildWhyChooseUsSection(context),
               _buildTestimonialsSection(context),
               _buildStatsAndDownloadSection(context),
@@ -669,88 +668,6 @@ class _WebHomeScreenState extends ConsumerState<WebHomeScreen> {
     );
   }
 
-  Widget _buildContactSection(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final bool isMobile = screenWidth < 1000;
-
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 30 : 50, 
-        horizontal: isMobile ? 20 : 40
-      ),
-      color: const Color(0xFFF8FAFC),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1100),
-          child: isMobile 
-            ? Column(
-                children: [
-                  _contactInfoCard(isMobile),
-                  const SizedBox(height: 48),
-                  _contactFormPreview(isMobile),
-                ],
-              )
-            : Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(flex: 2, child: _contactInfoCard(isMobile)),
-                  const SizedBox(width: 64),
-                  Expanded(flex: 3, child: _contactFormPreview(isMobile)),
-                ],
-              ),
-        ),
-      ),
-    );
-  }
-
-  Widget _contactInfoCard(bool isMobile) {
-    return Column(
-      crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-      children: [
-        Text(
-          'GET IN TOUCH',
-          style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.bold, color: const Color(0xFF6366F1), letterSpacing: 2),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'We\'re Here to Help',
-          style: GoogleFonts.playfairDisplay(fontSize: 36, fontWeight: FontWeight.bold, color: const Color(0xFF1E293B)),
-        ),
-        const SizedBox(height: 32),
-        _contactDetailItem(Icons.phone_rounded, 'Call Us', '+91 1800-123-4567'),
-        const SizedBox(height: 24),
-        _contactDetailItem(Icons.email_rounded, 'Email Us', 'help@cloudwash.com'),
-        const SizedBox(height: 24),
-        _contactDetailItem(Icons.location_on_rounded, 'Visit Us', 'Cloud Wash HQ, Bangalore, 560038'),
-      ],
-    );
-  }
-
-  Widget _contactDetailItem(IconData icon, String title, String value) {
-    return Row(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(color: const Color(0xFF6366F1).withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
-          child: Icon(icon, color: const Color(0xFF6366F1), size: 24),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
-              Text(
-                value, 
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1E293B)),
-                softWrap: true,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _contactFormPreview(bool isMobile) {
     return Container(
