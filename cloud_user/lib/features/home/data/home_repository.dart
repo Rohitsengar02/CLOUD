@@ -20,33 +20,85 @@ class HomeRepository {
     try {
       // Logic from APIService: apiClient.get('/content/categories')
       final response = await _dio.get('/content/categories');
-      
+
       // Assuming response.data is List or { data: List }
       final data = response.data['data'] as List;
       return data.map((e) => CategoryModel.fromJson(e)).toList();
     } catch (e) {
       // Return Mock Data if API fails (for development)
       return [
-        CategoryModel(id: '1', name: 'Laundry', color: 'E3F2FD'),
-        CategoryModel(id: '2', name: 'Dry Cleaning', color: 'FCE4EC'),
-        CategoryModel(id: '3', name: 'Shoe Cleaning', color: 'FFF3E0'),
-        CategoryModel(id: '4', name: 'Leather Cleaning', color: 'E8F5E9'),
-        CategoryModel(id: '5', name: 'Curtain Cleaning', color: 'E0F7FA'),
-        CategoryModel(id: '6', name: 'Carpet Cleaning', color: 'F3E5F5'),
+        CategoryModel(
+          id: '1',
+          name: 'Laundry',
+          description: 'Professional laundry service',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
+        CategoryModel(
+          id: '2',
+          name: 'Dry Cleaning',
+          description: 'Expert dry cleaning',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
+        CategoryModel(
+          id: '3',
+          name: 'Shoe Cleaning',
+          description: 'Shoe care service',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
+        CategoryModel(
+          id: '4',
+          name: 'Leather Cleaning',
+          description: 'Leather care',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
+        CategoryModel(
+          id: '5',
+          name: 'Curtain Cleaning',
+          description: 'Curtain cleaning',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
+        CategoryModel(
+          id: '6',
+          name: 'Carpet Cleaning',
+          description: 'Carpet deep clean',
+          price: 0,
+          imageUrl: 'https://via.placeholder.com/150',
+        ),
       ];
     }
   }
 
   Future<List<ServiceModel>> getPopularServices() async {
     try {
-       final response = await _dio.get('/services?popular=true');
-       final data = response.data['data'] as List;
-       return data.map((e) => ServiceModel.fromJson(e)).toList();
+      final response = await _dio.get('/services?popular=true');
+      final data = response.data['data'] as List;
+      return data.map((e) => ServiceModel.fromJson(e)).toList();
     } catch (e) {
-       return [
-         ServiceModel(id: '1', title: 'Wash & Fold', price: 49, category: 'Laundry', rating: 4.8, reviewCount: 120, image: 'https://cdn-icons-png.flaticon.com/512/3003/3003984.png'),
-         ServiceModel(id: '2', title: 'Premium Dry Clean', price: 149, category: 'Dry Cleaning', rating: 4.9, reviewCount: 215, image: 'https://cdn-icons-png.flaticon.com/512/2954/2954835.png'),
-       ];
+      return [
+        ServiceModel(
+          id: '1',
+          title: 'Wash & Fold',
+          price: 49,
+          category: 'Laundry',
+          rating: 4.8,
+          reviewCount: 120,
+          image: 'https://cdn-icons-png.flaticon.com/512/3003/3003984.png',
+        ),
+        ServiceModel(
+          id: '2',
+          title: 'Premium Dry Clean',
+          price: 149,
+          category: 'Dry Cleaning',
+          rating: 4.9,
+          reviewCount: 215,
+          image: 'https://cdn-icons-png.flaticon.com/512/2954/2954835.png',
+        ),
+      ];
     }
   }
 }

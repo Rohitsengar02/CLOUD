@@ -10,14 +10,18 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
       id: json['_id'] as String,
       name: json['name'] as String,
-      image: json['image'] as String?,
-      color: json['color'] as String?,
+      description: json['description'] as String,
+      price: (json['price'] as num).toDouble(),
+      imageUrl: json['imageUrl'] as String,
+      isActive: json['isActive'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'name': instance.name,
-      'image': instance.image,
-      'color': instance.color,
+      'description': instance.description,
+      'price': instance.price,
+      'imageUrl': instance.imageUrl,
+      'isActive': instance.isActive,
     };

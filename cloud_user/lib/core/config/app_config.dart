@@ -1,5 +1,5 @@
 class AppConfig {
-  static const String devBaseUrl = 'http://localhost:3000/api';
+  static const String devBaseUrl = 'http://localhost:5001/api';
   static const String prodBaseUrl = 'https://urbanproxbackend.onrender.com/api';
 
   // Toggle this to switch environments

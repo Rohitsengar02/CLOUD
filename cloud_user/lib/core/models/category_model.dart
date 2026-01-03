@@ -7,16 +7,21 @@ class CategoryModel {
   @JsonKey(name: '_id')
   final String id;
   final String name;
-  final String? image;
-  final String? color; // Hex color for UI
+  final String description;
+  final double price;
+  final String imageUrl;
+  final bool isActive;
 
   CategoryModel({
     required this.id,
     required this.name,
-    this.image,
-    this.color,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
+    this.isActive = true,
   });
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
   Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_user/core/models/category_model.dart';
+import 'package:cloud_user/features/home/data/categories_provider.dart';
 import 'package:cloud_user/features/home/data/home_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -144,9 +145,9 @@ class _CategoryCardState extends State<_CategoryCard> {
                 child: Icon(
                   widget.icon,
                   size: 32,
-                  color: HSLColor.fromColor(widget.backgroundColor)
-                      .withLightness(0.3)
-                      .toColor(),
+                  color: HSLColor.fromColor(
+                    widget.backgroundColor,
+                  ).withLightness(0.3).toColor(),
                 ),
               ),
               const SizedBox(height: 12),
