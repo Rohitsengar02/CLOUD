@@ -29,7 +29,7 @@ const uploadFromBuffer = (buffer) => {
 
 const createService = async (req, res) => {
     try {
-        const { name, category, price, duration, description, isActive } = req.body;
+        const { name, category, subCategory, price, duration, description, isActive } = req.body;
 
         if (!req.file) {
             return res.status(400).json({ message: 'Please upload an image' });
@@ -40,6 +40,7 @@ const createService = async (req, res) => {
         const service = await Service.create({
             name,
             category,
+            subCategory, // Add this
             price,
             duration,
             description,
@@ -57,7 +58,18 @@ const createService = async (req, res) => {
 const getServices = async (req, res) => {
     try {
         // Populate category.name for filtering/display
-        const services = await Service.find({}).populate('category', 'name');
+        const query = {};
+        if (req.query.categoryId) {
+            query.category = req.query.categoryId;
+        }
+        if (req.query.subCategoryId) {
+            query.subCategory = req.query.subCategoryId;
+        }
+
+        // Populate category.name for filtering/display
+        const services = await Service.find(query)
+            .populate('category', 'name')
+            .populate('subCategory', 'name'); // Also populate subCategory
         res.json(services);
     } catch (error) {
         console.error(error);

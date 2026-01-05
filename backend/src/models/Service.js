@@ -11,6 +11,11 @@ const serviceSchema = new mongoose.Schema({
         ref: 'Category',
         required: true,
     },
+    subCategory: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SubCategory',
+        required: false, // Optional for now to support backward compatibility
+    },
     price: {
         type: Number,
         required: true,

@@ -5,25 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CategoryScreen extends ConsumerWidget {
-  final String categoryId;
-  final String categoryName;
+class ServicesListScreen extends ConsumerWidget {
+  final String subCategoryId;
+  final String subCategoryName;
 
-  const CategoryScreen({
+  const ServicesListScreen({
     super.key,
-    required this.categoryId,
-    required this.categoryName,
+    required this.subCategoryId,
+    required this.subCategoryName,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final servicesAsync = ref.watch(servicesProvider(categoryId: categoryId));
+    // Pass subCategoryId to provider
+    final servicesAsync = ref.watch(
+      servicesProvider(subCategoryId: subCategoryId),
+    );
     final cartState = ref.watch(cartProvider);
     final cartItems = cartState.items;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryName),
+        title: Text(subCategoryName),
         actions: [
           Stack(
             children: [
@@ -52,32 +55,39 @@ class CategoryScreen extends ConsumerWidget {
         ],
       ),
       body: servicesAsync.when(
-        data: (services) => ListView.builder(
-          padding: const EdgeInsets.all(20),
-          itemCount: services.length,
-          itemBuilder: (context, index) {
-            final service = services[index];
-            return ServiceCard(
-              service: service,
-              onTap: () {
-                context.push('/service-details', extra: service);
-              },
-              onAdd: () {
-                ref.read(cartProvider.notifier).addToCart(service);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${service.title} added to cart'),
-                    duration: const Duration(seconds: 1),
-                    action: SnackBarAction(
-                      label: 'View Cart',
-                      onPressed: () => context.push('/cart'),
-                    ),
-                  ),
-                );
-              },
+        data: (services) {
+          if (services.isEmpty) {
+            return const Center(
+              child: Text('No services found for this sub-category.'),
             );
-          },
-        ),
+          }
+          return ListView.builder(
+            padding: const EdgeInsets.all(20),
+            itemCount: services.length,
+            itemBuilder: (context, index) {
+              final service = services[index];
+              return ServiceCard(
+                service: service,
+                onTap: () {
+                  context.push('/service-details', extra: service);
+                },
+                onAdd: () {
+                  ref.read(cartProvider.notifier).addToCart(service);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${service.title} added to cart'),
+                      duration: const Duration(seconds: 1),
+                      action: SnackBarAction(
+                        label: 'View Cart',
+                        onPressed: () => context.push('/cart'),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),

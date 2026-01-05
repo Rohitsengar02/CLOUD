@@ -1,7 +1,7 @@
 import 'package:cloud_user/core/models/service_model.dart';
 import 'package:cloud_user/features/bookings/presentation/bookings_screen.dart';
 import 'package:cloud_user/features/home/presentation/home_screen.dart';
-import 'package:cloud_user/features/home/presentation/category_screen.dart';
+
 import 'package:cloud_user/features/home/presentation/service_details_screen.dart';
 import 'package:cloud_user/features/home/presentation/scaffold_with_nav_bar.dart';
 import 'package:cloud_user/features/profile/presentation/profile_screen.dart';
@@ -13,8 +13,12 @@ import 'package:cloud_user/features/cart/presentation/cart_screen.dart';
 import 'package:cloud_user/features/cart/presentation/checkout_screen.dart';
 import 'package:cloud_user/features/web/presentation/web_home_screen.dart';
 import 'package:cloud_user/features/web/presentation/web_bookings_screen.dart';
+import 'package:cloud_user/features/web/presentation/web_sub_categories_screen.dart';
+import 'package:cloud_user/features/home/presentation/sub_categories_screen.dart';
 import 'package:cloud_user/features/web/presentation/web_services_page.dart';
 import 'package:cloud_user/features/web/presentation/web_static_page.dart';
+import 'package:cloud_user/features/home/presentation/services_list_screen.dart';
+import 'package:cloud_user/features/web/presentation/web_services_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -24,10 +28,18 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 part 'app_router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'shellHome');
-final _shellNavigatorBookingsKey = GlobalKey<NavigatorState>(debugLabel: 'shellBookings');
-final _shellNavigatorRewardsKey = GlobalKey<NavigatorState>(debugLabel: 'shellRewards');
-final _shellNavigatorProfileKey = GlobalKey<NavigatorState>(debugLabel: 'shellProfile');
+final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellHome',
+);
+final _shellNavigatorBookingsKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellBookings',
+);
+final _shellNavigatorRewardsKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellRewards',
+);
+final _shellNavigatorProfileKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellProfile',
+);
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
@@ -72,7 +84,19 @@ GoRouter _buildWebRouter() {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           final name = state.extra as String? ?? 'Services';
-          return CategoryScreen(categoryId: id, categoryName: name);
+          return WebSubCategoriesScreen(categoryId: id, categoryName: name);
+        },
+      ),
+      GoRoute(
+        path: '/services-list/:subCategoryId',
+        name: 'servicesList',
+        builder: (context, state) {
+          final id = state.pathParameters['subCategoryId']!;
+          final name = state.extra as String? ?? 'Services';
+          return WebServicesListScreen(
+            subCategoryId: id,
+            subCategoryName: name,
+          );
         },
       ),
       GoRoute(
@@ -112,37 +136,41 @@ GoRouter _buildWebRouter() {
       GoRoute(
         path: '/about',
         name: 'about',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.aboutUs),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.aboutUs),
       ),
       GoRoute(
         path: '/contact',
         name: 'contact',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.contactUs),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.contactUs),
       ),
       GoRoute(
         path: '/terms',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.terms),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.terms),
       ),
       GoRoute(
         path: '/privacy',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.privacy),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.privacy),
       ),
       GoRoute(
         path: '/blog',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.blog),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.blog),
       ),
       GoRoute(
         path: '/reviews',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.reviews),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.reviews),
       ),
       GoRoute(
         path: '/child-protection',
-        builder: (context, state) => const WebStaticPage(pageType: StaticPageType.childProtection),
+        builder: (context, state) =>
+            const WebStaticPage(pageType: StaticPageType.childProtection),
       ),
-      GoRoute(
-        path: '/map',
-        builder: (context, state) => const MapScreen(),
-      ),
+      GoRoute(path: '/map', builder: (context, state) => const MapScreen()),
     ],
   );
 }
@@ -180,13 +208,18 @@ GoRouter _buildMobileRouter() {
         builder: (context, state) {
           final id = state.pathParameters['id']!;
           final name = state.extra as String? ?? 'Services';
-          return CategoryScreen(categoryId: id, categoryName: name);
+          return SubCategoriesScreen(categoryId: id, categoryName: name);
         },
       ),
       GoRoute(
-        path: '/cart',
-        builder: (context, state) => const CartScreen(),
+        path: '/services-list/:subCategoryId',
+        builder: (context, state) {
+          final id = state.pathParameters['subCategoryId']!;
+          final name = state.extra as String? ?? 'Services';
+          return ServicesListScreen(subCategoryId: id, subCategoryName: name);
+        },
       ),
+      GoRoute(path: '/cart', builder: (context, state) => const CartScreen()),
       GoRoute(
         path: '/checkout',
         builder: (context, state) => const CheckoutScreen(),

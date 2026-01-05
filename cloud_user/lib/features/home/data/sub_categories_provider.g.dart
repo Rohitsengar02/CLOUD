@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'services_provider.dart';
+part of 'sub_categories_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$servicesHash() => r'9dce015263b9ac42e9f6d4073952336782f1cfb2';
+String _$subCategoriesByCategoryHash() =>
+    r'81df6fa0d2084aff37be29fc09098b55fa6c7a3a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,29 +30,26 @@ class _SystemHash {
   }
 }
 
-/// See also [services].
-@ProviderFor(services)
-const servicesProvider = ServicesFamily();
+/// See also [subCategoriesByCategory].
+@ProviderFor(subCategoriesByCategory)
+const subCategoriesByCategoryProvider = SubCategoriesByCategoryFamily();
 
-/// See also [services].
-class ServicesFamily extends Family<AsyncValue<List<ServiceModel>>> {
-  /// See also [services].
-  const ServicesFamily();
+/// See also [subCategoriesByCategory].
+class SubCategoriesByCategoryFamily
+    extends Family<AsyncValue<List<SubCategoryModel>>> {
+  /// See also [subCategoriesByCategory].
+  const SubCategoriesByCategoryFamily();
 
-  /// See also [services].
-  ServicesProvider call({String? categoryId, String? subCategoryId}) {
-    return ServicesProvider(
-      categoryId: categoryId,
-      subCategoryId: subCategoryId,
-    );
+  /// See also [subCategoriesByCategory].
+  SubCategoriesByCategoryProvider call(String categoryId) {
+    return SubCategoriesByCategoryProvider(categoryId);
   }
 
   @override
-  ServicesProvider getProviderOverride(covariant ServicesProvider provider) {
-    return call(
-      categoryId: provider.categoryId,
-      subCategoryId: provider.subCategoryId,
-    );
+  SubCategoriesByCategoryProvider getProviderOverride(
+    covariant SubCategoriesByCategoryProvider provider,
+  ) {
+    return call(provider.categoryId);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -66,31 +64,31 @@ class ServicesFamily extends Family<AsyncValue<List<ServiceModel>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'servicesProvider';
+  String? get name => r'subCategoriesByCategoryProvider';
 }
 
-/// See also [services].
-class ServicesProvider extends AutoDisposeFutureProvider<List<ServiceModel>> {
-  /// See also [services].
-  ServicesProvider({String? categoryId, String? subCategoryId})
+/// See also [subCategoriesByCategory].
+class SubCategoriesByCategoryProvider
+    extends AutoDisposeFutureProvider<List<SubCategoryModel>> {
+  /// See also [subCategoriesByCategory].
+  SubCategoriesByCategoryProvider(String categoryId)
     : this._internal(
-        (ref) => services(
-          ref as ServicesRef,
-          categoryId: categoryId,
-          subCategoryId: subCategoryId,
+        (ref) => subCategoriesByCategory(
+          ref as SubCategoriesByCategoryRef,
+          categoryId,
         ),
-        from: servicesProvider,
-        name: r'servicesProvider',
+        from: subCategoriesByCategoryProvider,
+        name: r'subCategoriesByCategoryProvider',
         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
             ? null
-            : _$servicesHash,
-        dependencies: ServicesFamily._dependencies,
-        allTransitiveDependencies: ServicesFamily._allTransitiveDependencies,
+            : _$subCategoriesByCategoryHash,
+        dependencies: SubCategoriesByCategoryFamily._dependencies,
+        allTransitiveDependencies:
+            SubCategoriesByCategoryFamily._allTransitiveDependencies,
         categoryId: categoryId,
-        subCategoryId: subCategoryId,
       );
 
-  ServicesProvider._internal(
+  SubCategoriesByCategoryProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -98,48 +96,46 @@ class ServicesProvider extends AutoDisposeFutureProvider<List<ServiceModel>> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.categoryId,
-    required this.subCategoryId,
   }) : super.internal();
 
-  final String? categoryId;
-  final String? subCategoryId;
+  final String categoryId;
 
   @override
   Override overrideWith(
-    FutureOr<List<ServiceModel>> Function(ServicesRef provider) create,
+    FutureOr<List<SubCategoryModel>> Function(
+      SubCategoriesByCategoryRef provider,
+    )
+    create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: ServicesProvider._internal(
-        (ref) => create(ref as ServicesRef),
+      override: SubCategoriesByCategoryProvider._internal(
+        (ref) => create(ref as SubCategoriesByCategoryRef),
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         categoryId: categoryId,
-        subCategoryId: subCategoryId,
       ),
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<ServiceModel>> createElement() {
-    return _ServicesProviderElement(this);
+  AutoDisposeFutureProviderElement<List<SubCategoryModel>> createElement() {
+    return _SubCategoriesByCategoryProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ServicesProvider &&
-        other.categoryId == categoryId &&
-        other.subCategoryId == subCategoryId;
+    return other is SubCategoriesByCategoryProvider &&
+        other.categoryId == categoryId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, categoryId.hashCode);
-    hash = _SystemHash.combine(hash, subCategoryId.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -147,23 +143,20 @@ class ServicesProvider extends AutoDisposeFutureProvider<List<ServiceModel>> {
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ServicesRef on AutoDisposeFutureProviderRef<List<ServiceModel>> {
+mixin SubCategoriesByCategoryRef
+    on AutoDisposeFutureProviderRef<List<SubCategoryModel>> {
   /// The parameter `categoryId` of this provider.
-  String? get categoryId;
-
-  /// The parameter `subCategoryId` of this provider.
-  String? get subCategoryId;
+  String get categoryId;
 }
 
-class _ServicesProviderElement
-    extends AutoDisposeFutureProviderElement<List<ServiceModel>>
-    with ServicesRef {
-  _ServicesProviderElement(super.provider);
+class _SubCategoriesByCategoryProviderElement
+    extends AutoDisposeFutureProviderElement<List<SubCategoryModel>>
+    with SubCategoriesByCategoryRef {
+  _SubCategoriesByCategoryProviderElement(super.provider);
 
   @override
-  String? get categoryId => (origin as ServicesProvider).categoryId;
-  @override
-  String? get subCategoryId => (origin as ServicesProvider).subCategoryId;
+  String get categoryId =>
+      (origin as SubCategoriesByCategoryProvider).categoryId;
 }
 
 // ignore_for_file: type=lint

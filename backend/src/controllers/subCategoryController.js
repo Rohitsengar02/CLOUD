@@ -57,9 +57,13 @@ const createSubCategory = async (req, res) => {
 
 const getSubCategories = async (req, res) => {
     try {
+        const query = {};
+        if (req.query.categoryId) {
+            query.category = req.query.categoryId;
+        }
         // Populate specific fields from the 'category' reference using just the path 'category'
         // Mongoose will look up the model 'Category' because we defined ref: 'Category' in the schema
-        const subCategories = await SubCategory.find({}).populate('category', 'name');
+        const subCategories = await SubCategory.find(query).populate('category', 'name');
         res.json(subCategories);
     } catch (error) {
         console.error(error);

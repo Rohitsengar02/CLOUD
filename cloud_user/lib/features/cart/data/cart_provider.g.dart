@@ -6,7 +6,7 @@ part of 'cart_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cartTotalHash() => r'19ee9922b302c14d38e78fbec982b9978082b333';
+String _$cartTotalHash() => r'25d83420e9e3cac85f225b5724fbbec35332ed57';
 
 /// See also [cartTotal].
 @ProviderFor(cartTotal)
@@ -23,11 +23,11 @@ final cartTotalProvider = AutoDisposeProvider<double>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CartTotalRef = AutoDisposeProviderRef<double>;
-String _$cartHash() => r'5edc1c0b3c120797fda655166e3b52e485c2dd13';
+String _$cartHash() => r'b3b3b49a584bd7576cc774a90978c6e228264ed9';
 
 /// See also [Cart].
 @ProviderFor(Cart)
-final cartProvider = NotifierProvider<Cart, List<CartItem>>.internal(
+final cartProvider = NotifierProvider<Cart, CartState>.internal(
   Cart.new,
   name: r'cartProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -37,6 +37,6 @@ final cartProvider = NotifierProvider<Cart, List<CartItem>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$Cart = Notifier<List<CartItem>>;
+typedef _$Cart = Notifier<CartState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -29,6 +29,36 @@ class ServiceModel {
     this.reviewCount,
   });
 
-  factory ServiceModel.fromJson(Map<String, dynamic> json) => _$ServiceModelFromJson(json);
+  factory ServiceModel.fromJson(Map<String, dynamic> json) {
+    // Handle category being Map or String
+    String catId = '';
+    if (json['category'] is Map) {
+      catId = json['category']['_id'] ?? '';
+    } else if (json['category'] is String) {
+      catId = json['category'];
+    }
+
+    // Handle subCategory being Map or String
+    String? subCatId;
+    if (json['subCategory'] is Map) {
+      subCatId = json['subCategory']['_id'];
+    } else if (json['subCategory'] is String) {
+      subCatId = json['subCategory'];
+    }
+
+    return ServiceModel(
+      id: json['_id'] ?? '',
+      title: json['name'] ?? '',
+      description: json['description'],
+      price: (json['price'] ?? 0).toDouble(),
+      image: json['imageUrl'] ?? '',
+      category: catId,
+      subCategory: subCatId,
+      duration: json['duration'],
+      rating: (json['rating'] ?? 0).toDouble(),
+      reviewCount: json['reviewCount'],
+    );
+  }
+
   Map<String, dynamic> toJson() => _$ServiceModelToJson(this);
 }
